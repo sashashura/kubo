@@ -24,7 +24,10 @@ func dagpbJSONParser(r io.Reader, mhType uint64, mhLen int) ([]ipld.Node, error)
 		return nil, err
 	}
 
-	nd.SetCidBuilder(cidPrefix(mhType, mhLen))
+	err = nd.SetCidBuilder(cidPrefix(mhType, mhLen))
+	if err != nil {
+		return nil, err
+	}
 
 	return []ipld.Node{nd}, nil
 }
@@ -40,7 +43,10 @@ func dagpbRawParser(r io.Reader, mhType uint64, mhLen int) ([]ipld.Node, error) 
 		return nil, err
 	}
 
-	nd.SetCidBuilder(cidPrefix(mhType, mhLen))
+	err = nd.SetCidBuilder(cidPrefix(mhType, mhLen))
+	if err != nil {
+		return nil, err
+	}
 
 	return []ipld.Node{nd}, nil
 }
